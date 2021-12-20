@@ -28,6 +28,13 @@ public class NeighborhoodServiceImpl implements NeighborhoodService {
     }
 
     @Override
+    public Neighborhood findById(Long id) {
+        return NeighborhoodRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(String.format("Neighborhood with id: %d does not exists.",id)));
+    }
+
+    @Override
     public Set<Neighborhood> findAll() {
         return new HashSet<>(neighborhoodRepository.findAll());
     }
