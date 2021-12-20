@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Entity
-@Table(name = "neighbourhoods")
-
-public class Neighbourhood {
+@Table(name = "cities")
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +25,8 @@ public class Neighbourhood {
     @NotNull
     @Column(nullable = false, unique = true)
     private String name;
+
+    @OneToMany
+    private Set<Neighborhood> neighbourhoods;
+
 }
